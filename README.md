@@ -1,6 +1,6 @@
 # Observability with Prometheus and Grafana
 
-This repository contains the code snippets used in Observability with Prometheus and Grafana: A Step-by-Step Guide Practical Guide to Monitoring Cloud-Native Applications.
+This repository contains the code snippets used in *Observability with Prometheus and Grafana: A Step-by-Step Guide Practical Guide to Monitoring Cloud-Native Applications*.
 
 ![](resources/images/3d.png)
 
