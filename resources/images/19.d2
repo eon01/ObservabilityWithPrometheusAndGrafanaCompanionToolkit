@@ -1,0 +1,36 @@
+direction: right
+monitoring: "Monitoring server"
+cluster: "Docker Swarm Cluster"
+cluster.server1: "Server1 (manager)" {
+  width: 400
+  style: {
+    font-size: 29
+    bold: true
+    underline: true
+  }
+}
+cluster.server2: "Server2 (worker)" {
+  width: 400
+  style: {
+    font-size: 29
+    bold: true
+    underline: true
+  }
+}
+cluster.server1.tcp: "TCP Socket" {
+  shape: "rectangle"
+  width: 5
+  height: 5
+  style: {
+    stroke: "#53C0D8"
+    stroke-width: 5
+    shadow: true
+  }
+}
+
+user: "User" {
+  shape: person
+}
+
+user <-> monitoring
+monitoring <-> cluster.server1.tcp

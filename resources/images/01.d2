@@ -1,0 +1,172 @@
+classes: {
+  prom: {
+    label: "Prometheus server(s)"
+    shape: rectangle
+    width: 300
+    height: 300
+    style: {
+      double-border: true
+      shadow: true
+      fill: "#e5b94b"
+      font-size: 40
+    }
+  }
+  push: {
+    label: "Pushgateawy"
+    shape: square
+    near: prom
+    width: 300
+    height: 300
+    style: {
+      shadow: false
+      fill: "#ff6a07"
+      font-color: white
+      font-size: 40
+    }
+  }
+  jobs: {
+    label: "Jobs"
+    shape: square
+    near: prom
+    width: 300
+    height: 300
+    style: {
+      shadow: false
+      fill: "#ff6a07"
+      font-color: white
+      font-size: 40
+    }
+  }
+  expo: {
+    label: "Exporters"
+    shape: square
+    near: prom
+    width: 300
+    height: 300
+    style: {
+      shadow: false
+      fill: "#ff6a07"
+      font-color: white
+      font-size: 40
+    }
+  }
+  alert: {
+    label: "Alertmanager"
+    shape: rectangle
+    style: {
+      shadow: false
+      fill: "#c5cdea"
+      font-size: 40
+    }
+  }
+  web: {
+    label: "Prometheus Web UI"
+    shape: rectangle
+    near: alert
+    style: {
+      shadow: false
+      font-size: 40
+    }
+  }
+  gra: {
+    label: "Grafana"
+    shape: rectangle
+    near: alert
+    style: {
+      shadow: false
+      font-size: 40
+    }
+  }
+  api: {
+    label: "API Clients"
+    shape: rectangle
+    near: alert
+    style: {
+      shadow: false
+      font-size: 40
+    }
+  }
+  sub: {
+    # label: "API Clients"
+    shape: rectangle
+    near: alert
+    style: {
+      shadow: false
+      font-size: 40
+    }
+  }
+
+  short: {
+    label: "Short-lived jobs"
+    style: {
+      shadow: false
+      font-size: 50
+    }
+  }
+}
+
+prom.class: prom
+push.class: push
+jobs.class: jobs
+expo.class: expo
+alert.class: alert
+web.class: web
+gra.class: gra
+api.class: api
+short.class: short
+
+prom.ret: Retrieval
+prom.tsdb: TSDB
+prom.http: HTTP Server
+
+prom.ret <- push
+
+prom.ret <- jobs: pull metrics {
+  style: {
+    font-size: 45
+    stroke: deepskyblue
+  }
+}
+prom.ret <- expo: {
+  style: {
+    font-size: 40
+    stroke: deepskyblue
+  }
+}
+
+short -> push: push metrics {
+  style: {
+    font-size: 40
+    stroke: deepskyblue
+  }
+}
+
+prom.http -> web
+prom.http -> gra
+prom.http -> api
+
+prom -> alert: Push alerts {
+  style: {
+    font-size: 45
+    stroke: black
+  }
+}
+
+alert -> email
+
+alert -> slack
+
+alert -> other_tools
+
+other_tools: Other tools
+
+email.class: sub
+slack.class: sub
+other_tools.class: sub
+prom.tsdb.class: sub
+prom.ret.class: sub
+prom.http.class: sub
+
+prom: {
+  ret -> tsdb -> http
+}

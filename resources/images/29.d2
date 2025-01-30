@@ -1,0 +1,21 @@
+x: Batch job
+y: Pushgateway
+z: Prometheus
+
+x -> y: Push and exit {
+  style: {
+    stroke: green
+    opacity: 0.5
+    stroke-width: 2
+    stroke-dash: 5
+  }
+}
+
+z -> y: Scrape regulary {
+  style: {
+    stroke: green
+    opacity: 0.5
+    stroke-width: 2
+    stroke-dash: 5
+  }
+}
